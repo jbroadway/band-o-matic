@@ -1,0 +1,17 @@
+_br_shows_callback([
+	{
+		"date": "Dec 17",
+		"time": "8pm",
+		"city": "Winnipeg, MB",
+		"venue": "Folk Exchange",
+		"info": "w/ Ronnie James Trio, free show!"
+	},
+	{
+		"date": "Jan 6",
+		"time": "8pm",
+		"city": "Winnipeg, MB",
+		"venue": "WECC",
+		"ticket_link": "http://www.ticketmaster.ca/",
+		"info": "w/ Peter, Paul and Harry, $12 @ door, $10 adv."
+	}
+]);

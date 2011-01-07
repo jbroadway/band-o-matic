@@ -1,0 +1,39 @@
+.portrait #index {
+	background-image: url('/m/pix/bg-index-320x480.jpg');
+}
+
+.landscape #index {
+	background-image: url('/m/pix/bg-index-480x320.jpg');
+}
+
+.min-width-768px #index {
+	background-image: url('/m/pix/bg-index-768.jpg');
+	background-size: 100% 100%;
+}
+
+.min-width-1024px #index {
+	background-image: url('/m/pix/bg-index-1024.jpg');
+	background-size: 100% 100%;
+}
+
+#br-link-album1 {
+	background-image: url('/m/pix/link-album1.jpg');
+}
+
+.portrait #album1 {
+	background-image: url('/m/pix/bg-album1-320x480.jpg');
+}
+
+.landscape #album1 {
+	background-image: url('/m/pix/bg-album1-480x320.jpg');
+}
+
+.min-width-768px #album1 {
+	background-image: url('/m/pix/bg-album1-768.jpg');
+	background-size: 100% 100%;
+}
+
+.min-width-1024px #album1 {
+	background-image: url('/m/pix/bg-album1-1024.jpg');
+	background-size: 100% 100%;
+}
