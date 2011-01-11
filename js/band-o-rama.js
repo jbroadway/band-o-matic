@@ -101,12 +101,23 @@ var _br = (function ($) {
 			'css/pix/br-pause.png'
 		);
 
+		if (window.location.href.match ('app=true')) {
+			br.hide_iframe = false;
+			var extra = '&app=true';
+		} else {
+			var extra = '';
+		}
+
 		if (! br.hide_iframe) {
 			var url = window.location.href.replace (/#.*$/, '');
+			url = url.replace (/\?.*$/, '');
 			url = url.replace (/\/$/, '');
 			$('#br-play-pause').before (
-				$('<iframe src="http://www.band-o-rama.com/frame?top=' + escape (url) + '&ref=' + escape (document.referrer) + '" frameborder="0" id="br-home-frame" scrolling="no" />')
+				$('<iframe src="http://www.band-o-rama.com/frame?top=' + escape (url) + '&ref=' + escape (document.referrer) + extra + '" frameborder="0" id="br-home-frame" scrolling="no" />')
 			);
+			if (window.location.href.match ('app=true')) {
+				$('#br-home-frame').css ({'width': '40px !important'});
+			}
 		}
 
 		if (br.shows_url) {
