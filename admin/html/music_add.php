@@ -28,7 +28,7 @@ if (! isset ($_POST['weight'])) {
 ?>" size="20" /></p>
 
 <p>Icon: (link to 40x40 jpg file)<br />
-<input type="text" name="icon" placeholder="/m/pix/album_icon.jpg" value="<?php echo $_POST['icon']; ?>" size="50" /></p>
+<input type="text" name="icon" id="icon" placeholder="/m/pix/album_icon.jpg" value="<?php echo $_POST['icon']; ?>" size="50" /> <input type="file" id="file_icon" class="jpg" /></p>
 
 <p><strong>Backgrounds</strong></p>
 
