@@ -33,16 +33,16 @@ http://www.your-band.com/photos/live-shot-01.jpg</p>
 <p><strong>Homepage Backgrounds</strong></p>
 
 <p>iPhone portrait: (link to 320x480 jpg file)<br />
-<input type="text" name="bg_320x480" placeholder="/m/pix/bg_320x480.jpg" value="<?php echo $general->bg_320x480; ?>" size="50" /></p>
+<input type="text" name="bg_320x480" id="bg_320x480" placeholder="/m/pix/bg_320x480.jpg" value="<?php echo $general->bg_320x480; ?>" size="50" /> <input type="file" id="file_bg_320x480" class="jpg" /></p>
 
 <p>iPhone landscape: (link to 480x320 jpg file)<br />
-<input type="text" name="bg_480x320" placeholder="/m/pix/bg_480x320.jpg" value="<?php echo $general->bg_480x320; ?>" size="50" /></p>
+<input type="text" name="bg_480x320" id="bg_480x320" placeholder="/m/pix/bg_480x320.jpg" value="<?php echo $general->bg_480x320; ?>" size="50" /> <input type="file" id="file_bg_480x320" class="jpg" /></p>
 
 <p>iPad portrait: (link to 768x1024 jpg file)<br />
-<input type="text" name="bg_768" placeholder="/m/pix/bg_768.jpg" value="<?php echo $general->bg_768; ?>" size="50" /></p>
+<input type="text" name="bg_768" id="bg_768" placeholder="/m/pix/bg_768.jpg" value="<?php echo $general->bg_768; ?>" size="50" /> <input type="file" id="file_bg_768" class="jpg" /></p>
 
 <p>iPad landscape: (link to 1024x768 jpg file)<br />
-<input type="text" name="bg_1024" placeholder="/m/pix/bg_1024.jpg" value="<?php echo $general->bg_1024; ?>" size="50" /></p>
+<input type="text" name="bg_1024" id="bg_1024" placeholder="/m/pix/bg_1024.jpg" value="<?php echo $general->bg_1024; ?>" size="50" /> <input type="file" id="file_bg_1024" class="jpg" /></p>
 
 <p><input type="submit" value="Save" /></p>
 </form>

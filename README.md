@@ -43,12 +43,13 @@ You'll need a few things to setup a mobile site for your band:
 named 'm' on your website. This will be where people find the mobile
 version of your site from now on (e.g., www.bandname.com/m).
 
-3. Still in your FTP program, edit the file permissions on the folder
-`m/admin/config` and set the permissions to 0777 or read/write/execute
-for all. Make sure to click the option that says something to the effect
-of "Also change permissions on files inside this folder."
+3. Still in your FTP program, edit the file permissions on the folders
+`m/admin/config` and `m/admin/files` and set the permissions to 0777 or
+read/write/execute for all. Make sure to click the option that says
+something to the effect of "Also change permissions on files inside this
+folder."
 
-For example in Transmit on the Mac, you would right-click the folder and
+For example in Transmit on the Mac, you would right-click the folders and
 choose "Get Info", then under "Permissions" check off all the boxes, then
 click "Apply to enclosed items."
 
@@ -88,5 +89,6 @@ Band-o-rama also makes use of a few 3rd-party open source libraries:
 * [jQuery UI](http://jqueryui.com/)
 * [jPlayer](http://happyworm.com/jquery/jplayer/)
 * [Fancybox](http://fancybox.net/)
+* [Uploadify](http://www.uploadify.com/)
 * [PHP](http://php.net/)
 * [SQLite](http://www.sqlite.org/)

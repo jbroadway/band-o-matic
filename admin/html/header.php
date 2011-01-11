@@ -1,11 +1,14 @@
 <html>
 <head>
 	<title>Band-o-rama - Mobile Site Admin</title>
+	<link rel="stylesheet" type="text/css" href="js/uploadify/uploadify.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.7.custom.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.7.custom.min.js"></script>
 	<script type="text/javascript" src="js/jquery.pager.js"></script>
+	<script type="text/javascript" src="js/uploadify/swfobject.js"></script>
+	<script type="text/javascript" src="js/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready (function () {
 			$('table.list').pager ('tbody', {
@@ -13,6 +16,52 @@
 			});
 			$('#date').datepicker ({
 				dateFormat: 'yy-mm-dd'
+			});
+			$('.mp3').uploadify ({
+				'uploader': '<?php echo $settings['prefix']; ?>js/uploadify/uploadify.swf',
+				'script': '<?php echo $settings['prefix']; ?>js/uploadify/uploadify.php',
+				'cancelImg': '<?php echo $settings['prefix']; ?>js/uploadify/cancel.png',
+				'folder': '<?php echo $settings['prefix']; ?>files',
+				'auto': true,
+				'fileExt': 'mp3',
+				'multi': false,
+				'hideButton': true,
+				'wmode': 'transparent',
+				'onOpen': function () {
+					$('.submit').attr ('disabled', 'disabled');
+				},
+				'onComplete': function (ev, id, file, res, data) {
+					$('.submit').attr ('disabled', null);
+					songs = $('#songs')[0].value.split ("\n");
+					if (songs.length == 1 && songs[0] == '') {
+						songs = [];
+					}
+					if (jQuery.inArray (file.filePath, songs) == -1) {
+						songs.push (file.filePath);
+					}
+					$('#songs')[0].value = songs.join ("\n");
+				},
+				'onError': function (ev, id, file, err) {
+					alert (err.type + ' Error: ' + err.info);
+				}
+			});
+			$('.jpg').uploadify ({
+				'uploader': '<?php echo $settings['prefix']; ?>js/uploadify/uploadify.swf',
+				'script': '<?php echo $settings['prefix']; ?>js/uploadify/uploadify.php',
+				'cancelImg': '<?php echo $settings['prefix']; ?>js/uploadify/cancel.png',
+				'folder': '<?php echo $settings['prefix']; ?>files',
+				'auto': true,
+				'fileExt': 'jpg',
+				'multi': false,
+				'hideButton': true,
+				'wmode': 'transparent',
+				'onOpen': function () {
+					$('input[type=submit]').attr ('disabled', 'disabled');
+				},
+				'onComplete': function (ev, id, file, res, data) {
+					$('input[type=submit]').attr ('disabled', null);
+					$('#' + ev.target.id.replace ('file_', '')).attr ('value', file.filePath);
+				}
 			});
 		});
 	</script>

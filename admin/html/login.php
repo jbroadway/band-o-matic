@@ -16,4 +16,6 @@
 
 </form>
 
+<p><a href="../">Visit your mobile site</a></p>
+
 <?php require_once ('html/footer.php'); ?>

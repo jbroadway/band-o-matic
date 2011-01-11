@@ -17,6 +17,8 @@ if ($settings['admin_username'] == 'default' && $settings['admin_password'] == '
 	die ('You have not yet configured this site to be administered. Please edit the admin/settings.php file to enable the admin area.');
 }
 
+$settings['prefix'] = preg_replace ('/\/admin\/.*/', '/admin/', $_SERVER['REQUEST_URI']);
+
 if (function_exists ('date_default_timezone_set')) {
 	date_default_timezone_set ('GMT');
 }
