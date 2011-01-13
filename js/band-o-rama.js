@@ -63,6 +63,8 @@ var _br = (function ($) {
 
 	br.hide_iframe = false;
 
+	br.in_app = false;
+
 	br.pages = {
 		'index': {direction: false}
 	};
@@ -102,6 +104,7 @@ var _br = (function ($) {
 		);
 
 		if (window.location.href.match ('app=true')) {
+			br.in_app = true;
 			br.hide_iframe = false;
 			var extra = '&app=true';
 		} else {
@@ -115,8 +118,9 @@ var _br = (function ($) {
 			$('#br-play-pause').before (
 				$('<iframe src="http://www.band-o-rama.com/frame?top=' + escape (url) + '&ref=' + escape (document.referrer) + extra + '" frameborder="0" id="br-home-frame" scrolling="no" />')
 			);
-			if (window.location.href.match ('app=true')) {
+			if (br.in_app) {
 				$('#br-home-frame').css ({'width': '40px !important'});
+				$('#br-pages').css ({'margin-top': '-46px !important'});
 			}
 		}
 
