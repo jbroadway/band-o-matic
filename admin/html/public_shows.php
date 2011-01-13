@@ -11,7 +11,6 @@ foreach ($shows as $show) {
 	if (empty ($show->ticket_link)) {
 		unset ($show->ticket_link);
 	}
-	unset ($show->id);
 	$show->datetime = $show->date . ' ' . $show->time;
 	$show->time = gmdate ('g:ia', strtotime ($show->date . ' ' . $show->time));
 	$show->date = gmdate ('M j', strtotime ($show->date));
