@@ -173,6 +173,10 @@ div[data-role=page] {
 	height: 40px;
 }
 
+	#br-play-pause a:hover {
+		cursor: pointer;
+	}
+
 #br-play-link {
 	background-image: url('pix/br-play.png');
 }
