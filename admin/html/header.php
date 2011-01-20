@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Band-o-rama - Mobile Site Admin</title>
+	<title>Band-o-rama - Artist Admin</title>
 	<link rel="stylesheet" type="text/css" href="js/uploadify/uploadify.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.7.custom.css" />
@@ -69,7 +69,7 @@
 <body>
 <div id="wrapper">
 
-<h1 id="title">Band-o-rama</h1>
+<h1 id="title">Artist Admin</h1>
 
 <div id="nav">
 <?php if (! $unauthorized) { ?>

@@ -1,6 +1,6 @@
 <?php require_once ('html/header.php'); ?>
 
-<h2>Mobile Site Admin - Log In</h2>
+<h2>Log In</h2>
 
 <form method="post" action="index.php">
 
