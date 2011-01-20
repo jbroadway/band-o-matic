@@ -39,12 +39,26 @@ a.br-external-link:before {
 	left: 0px;
 }
 
+div#fancybox-outer {
+	background-color: rgba(0, 0, 0, .8);
+	color: #eee;
+}
+
+div#fancybox-content {
+	background-color: transparent !important;
+	border-top-color: transparent !important;
+	border-right-color: transparent !important;
+	border-bottom-color: transparent !important;
+	border-left-color: transparent !important;
+	color: #eee !important;
+}
+
 div#fancybox-content a.br-external-link {
-	background-image: url('pix/br-external-link-popup.png');
+	background-image: url('pix/br-external-link.png');
 }
 
 div#fancybox-content a {
-	color: #777;
+	color: #fff;
 }
 
 div#fancybox-content h2 {
@@ -68,6 +82,7 @@ div#fancybox-content li {
 div[data-role=page] {
 	padding-bottom: 60px;
 	background-repeat: no-repeat;
+	background-position: 0px 0px;
 	z-index: 1;
 }
 
@@ -76,21 +91,24 @@ div[data-role=page] {
 }
 
 .br-popup {
-	background-color: rgba(50, 50, 50, .7);
+	background-color: rgba(0, 0, 0, .7);
 	padding: 5px;
+	padding-bottom: 5px !important;
 	border-radius: 5px;
-	color: #ddd;
+	color: #eee;
 	z-index: 2;
 	width: auto;
 	max-width: 50%;
+	text-shadow: none !important;
 }
 
 .br-img {
 	border: 0px none;
+	max-width: 350px;
 }
 
 .max-width-1024px .br-img {
-	width: 450px;
+	width: 350px;
 }
 
 .max-width-768px .br-img {
@@ -112,6 +130,7 @@ div[data-role=page] {
 	margin-top: -46px;
 	left: 0px;
 	height: 46px;
+	background-color: #222;
 }
 
 	.max-width-320px #br-pages {
@@ -123,15 +142,16 @@ div[data-role=page] {
 	}
 
 	#br-pages a {
+		background-repeat: no-repeat;
 		display: block;
 		width: 42px;
 		height: 42px;
-		border-bottom: 4px solid #444;
+		border-bottom: 4px solid #222;
 		float: left;
 	}
 
 	#br-pages a.active {
-		border-bottom: 4px solid #ddd;
+		border-bottom: 4px solid #eee;
 	}
 
 	#br-link-index {

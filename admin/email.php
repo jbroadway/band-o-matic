@@ -14,7 +14,7 @@ if (isset ($_POST['title'])) {
 } else {
 	$email_page = $br->email_page ();
 	if (! $email_page) {
-		$email_page->css = "body {\n\tfont-family: Helvetica, Arial, sans-serif;\n}\n";
+		$email_page->css = "body {\n\tbackground-color: transparent;\n\tfont-family: Helvetica, Arial, sans-serif;\n\tcolor: #eee;\n}\n";
 	}
 }
 require_once ('html/email.php');
