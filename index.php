@@ -26,7 +26,7 @@
 </div>
 
 <div id="br-pages">
-<a href="#index" data-transition="slide" class="br-page-link active" id="br-link-index" onclick="_br.changePage ('index')"></a>
+<a href="javascript:void(0);" class="br-page-link active" id="br-link-index" onclick="return _br.changePage ('index')"></a>
 </div>
 
 <?php require_once ('admin/public_pages.php'); ?>

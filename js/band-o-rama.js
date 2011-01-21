@@ -79,6 +79,10 @@ var _br = (function ($) {
 	};
 
 	br.changePage = function (pg) {
+		if (pg == cur_page) {
+			return false;
+		}
+
 		$('.active').removeClass ('active');
 		$('#br-link-' + pg).addClass ('active');
 		cur_page = pg;
@@ -90,6 +94,8 @@ var _br = (function ($) {
 		if (pg != 'index') {
 			br.play (pg);
 		}
+		$.mobile.changePage ('#' + pg, 'slide');
+		return false;
 	};
 
 	br.init = function () {
@@ -212,7 +218,7 @@ var _br = (function ($) {
 				br.pages[i].transition = 'slide';
 			}
 			$('#br-pages').append (
-				$('<a href="#' + i + '" data-transition="' + br.pages[i].transition + '" class="br-page-link" id="br-link-' + i + '" onclick="_br.changePage (\'' + i + '\')"></a>')
+				$('<a href="javascript:void(0);" class="br-page-link" id="br-link-' + i + '" onclick="return _br.changePage (\'' + i + '\')"></a>')
 			);
 		}
 
