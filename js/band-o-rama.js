@@ -65,6 +65,10 @@ var _br = (function ($) {
 
 	br.in_app = false;
 
+	br.iphone = navigator.userAgent.match (/(iPhone|iPod)/i) ? true : false;
+
+	br.ipad = navigator.userAgent.match (/iPad/i) ? true : false;
+
 	br.pages = {
 		'index': {direction: false}
 	};
@@ -98,10 +102,23 @@ var _br = (function ($) {
 		return false;
 	};
 
+	br.setOrientation = function () {
+		var prefix = (br.iphone) ? 'iphone-' : false,
+			prefix = (! prefix && br.ipad) ? 'ipad-' : prefix,
+			prefix = (! prefix) ? 'web-' : prefix;
+
+		if (Math.abs(window.orientation) == 90) {
+			$('html').removeClass (prefix + 'portrait').addClass (prefix + 'landscape');
+		} else {
+			$('html').removeClass (prefix + 'landscape').addClass (prefix + 'portrait');
+		}
+
+		window.scrollTo (0, 1200);
+	};
+
 	br.init = function () {
-		$(document).bind ('orientationchange', function () {
-			window.scrollTo (0, 1200);
-		});
+		$(document).bind ('orientationchange', br.setOrientation);
+		br.setOrientation ();
 
 		$('title').html (br.artist_name);
 

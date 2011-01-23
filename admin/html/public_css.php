@@ -1,17 +1,22 @@
-.portrait #index {
+#index {
+	background-image: url('<?php echo $general->bg_1024; ?>');
+	background-size: 100% auto;
+}
+
+.iphone-portrait #index {
 	background-image: url('<?php echo $general->bg_320x480; ?>');
 }
 
-.landscape #index {
+.iphone-landscape #index {
 	background-image: url('<?php echo $general->bg_480x320; ?>');
 }
 
-.min-width-768px #index {
+.ipad-portrait #index {
 	background-image: url('<?php echo $general->bg_768; ?>');
 	background-size: auto 100%;
 }
 
-.min-width-1024px #index {
+.ipad-landscape #index {
 	background-image: url('<?php echo $general->bg_1024; ?>');
 	background-size: 100% auto;
 }
@@ -26,22 +31,27 @@ foreach ($albums as $album) {
 		$album->icon
 	);
 	printf (
-		".portrait #%s {\n\tbackground-image: url('%s');\n}\n\n",
+		"#%s {\n\tbackground-image: url('%s');\n\tbackground-size: 100%% auto;\n}\n\n",
+		$id,
+		$album->bg_1024
+	);
+	printf (
+		".iphone-portrait #%s {\n\tbackground-image: url('%s');\n}\n\n",
 		$id,
 		$album->bg_320x480
 	);
 	printf (
-		".landscape #%s {\n\tbackground-image: url('%s');\n}\n\n",
+		".iphone-landscape #%s {\n\tbackground-image: url('%s');\n}\n\n",
 		$id,
 		$album->bg_480x320
 	);
 	printf (
-		".min-width-768px #%s {\n\tbackground-image: url('%s');\n\tbackground-size: auto 100%%;\n}\n\n",
+		".ipad-portrait #%s {\n\tbackground-image: url('%s');\n\tbackground-size: auto 100%%;\n}\n\n",
 		$id,
 		$album->bg_768
 	);
 	printf (
-		".min-width-1024px #%s {\n\tbackground-image: url('%s');\n\tbackground-size: 100%% auto;\n}\n\n",
+		".ipad-landscape #%s {\n\tbackground-image: url('%s');\n\tbackground-size: 100%% auto;\n}\n\n",
 		$id,
 		$album->bg_1024
 	);
