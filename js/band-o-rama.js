@@ -350,16 +350,16 @@ var _br = (function ($) {
 
 	br.linkify = function (text) {
 		var re_image = /^https?:\/\/.+\.(jpg|png|gif)$/i,
-			re_links = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i,
+			re_links = / ((https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i,
 			re_hashtags = /#[a-z0-9]+/ig;
 
 		return (text.match (re_image))
 				? '<img src="' + text + '" class="br-img" />'
-				: text.replace (re_links, '<a href="$1" class="br-external-link"><' + '/a>').replace (re_hashtags, '')
+				: text.replace (re_links, ' <a href="$1" class="br-external-link"><' + '/a>').replace (re_hashtags, '')
 	};
 
 	br.popupMessage = function () {
-		if (message_num == br.messages[cur_page].length) {
+		if (message_num >= br.messages[cur_page].length) {
 			message_num = 0;
 			if (! br.loop_popups) {
 				clearTimeout (timeout);
@@ -370,18 +370,20 @@ var _br = (function ($) {
 
 		$('.br-popup').hide ();
 
-		var text = br.linkify (br.messages[cur_page][message_num]),
-			top = (br.messages[cur_page][message_num].match (/\.(jpg|png|gif)$/i))
-				? 10 + Math.round (Math.random () * 25)
-				: 15 + Math.round (Math.random () * 50),
-			left = 10 + Math.round (Math.random () * 25),
-			div = $('<div class="br-popup"></div>').html (text).css ({
-				position:'absolute',
-				top:top + '%',
-				left:left + '%'
-			});
-
-		$('#' + cur_page).append (div);
+		if (br.messages[cur_page][message_num]) {
+			var text = br.linkify (br.messages[cur_page][message_num]),
+				top = (br.messages[cur_page][message_num].match (/\.(jpg|png|gif)$/i))
+					? 10 + Math.round (Math.random () * 25)
+					: 15 + Math.round (Math.random () * 50),
+				left = 10 + Math.round (Math.random () * 25),
+				div = $('<div class="br-popup"></div>').html (text).css ({
+					position:'absolute',
+					top:top + '%',
+					left:left + '%'
+				});
+	
+			$('#' + cur_page).append (div);
+		}
 
 		message_num++;
 		timeout = setTimeout ('_br.popupMessage ();', br.popup_delay);
