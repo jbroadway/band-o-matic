@@ -8,11 +8,11 @@ Band-o-rama is 2 things:
 Both are free. This page is for #1. #2 can be found on the official
 Band-o-rama homepage here:
 
-* http://www.band-o-rama.com/
+* [http://www.band-o-rama.com/](http://www.band-o-rama.com/)
 
 An example of a real Band-o-rama mobile site is:
 
-* http://www.johnnybroadway.com/m
+* [http://www.johnnybroadway.com/m](http://www.johnnybroadway.com/m)
 
 Visit that link on your iPhone or iPad to see how a Band-o-rama site
 looks and feels.
@@ -21,7 +21,7 @@ looks and feels.
 
 The official discussion group page for Band-o-rama is:
 
-* http://band-o-rama.posterous.com/
+* [http://band-o-rama.posterous.com/](http://band-o-rama.posterous.com/)
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ You'll need a few things to setup a mobile site for your band:
 
 1. Download a copy of the Band-o-rama software from this page:
 
-* http://github.com/jbroadway/band-o-rama/downloads
+* [http://github.com/jbroadway/band-o-rama/downloads](http://github.com/jbroadway/band-o-rama/downloads)
 
 2. Unzip the download then use an FTP program to upload it to a folder
 named 'm' on your website. This will be where people find the mobile
