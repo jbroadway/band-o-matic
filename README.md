@@ -47,9 +47,7 @@ version of your site from now on (e.g., www.bandname.com/m).
 `m/admin/config` and `m/admin/files` and set the permissions to 0777 or
 read/write/execute for all. Make sure to click the option that says
 something to the effect of "Also change permissions on files inside this
-folder."
-
-For example in Transmit on the Mac, you would right-click the folders and
+folder." For example in Transmit on the Mac, you would right-click the folders and
 choose "Get Info", then under "Permissions" check off all the boxes, then
 click "Apply to enclosed items."
 
@@ -69,9 +67,7 @@ mobile devices.
 
 7. To redirect iPhone/iPad users from your main website so they automatically
 see your new mobile site, add this line to the `<head>` section of your
-main site's `index.html` file:
-
-	<script src="/m/js/redirect.js"></script>
+main site's `index.html` file: `<script src="/m/js/redirect.js"></script>`
 
 8. Now go to [http://www.band-o-rama.com/artists](http://www.band-o-rama.com/artists) and register your band
 for the Band-o-rama service so that listeners can find you on there!
