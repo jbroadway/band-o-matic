@@ -2,10 +2,10 @@
 
 Band-o-rama is 2 things:
 
-1. An open source tool for bands to create gorgeous iPhone/iPad websites.
+1. An open source tool for bands to create gorgeous iPhone/iPad websites. Think of it like Wordpress for mobile band sites.
 2. A service to help music lovers discover and connect with new bands.
 
-Both are free. This page is for #1. #2 can be found on the official
+Both are free. This page is about part 1. Part 2 can be found on the official
 Band-o-rama homepage here:
 
 * [http://www.band-o-rama.com/](http://www.band-o-rama.com/)
@@ -15,7 +15,7 @@ An example of a real Band-o-rama mobile site is:
 * [http://www.johnnybroadway.com/m](http://www.johnnybroadway.com/m)
 
 Visit that link on your iPhone or iPad to see how a Band-o-rama site
-looks and feels.
+looks and feels (also works in most browsers too).
 
 ## Getting Help
 
@@ -28,7 +28,7 @@ The official discussion group page for Band-o-rama is:
 You'll need a few things to setup a mobile site for your band:
 
 * Your own website, not just a Myspace or Facebook page. Your website
-  must support PHP.
+  must support PHP5.
 * An FTP program to upload files to your website.
 * MP3 files of some of your songs.
 * A photo editing program to make images of varying sizes for your site.
@@ -56,7 +56,7 @@ found inside. Change the values for `admin_username`, `admin_password`,
 and `default_city` and save the file. You can now close the FTP program.
 
 5. Open your web browser and go to `www.bandname.com/m/admin` on your
-website. Log in with the admin username/password from step 4. Bookmark
+website. Log in with the admin username/password from step 5. Bookmark
 this or save the link somewhere because this is where you'll go to keep
 your mobile site up-to-date. Follow the steps on each tab to setup your
 new site.
