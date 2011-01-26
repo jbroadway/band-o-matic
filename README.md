@@ -71,9 +71,9 @@ mobile devices.
 see your new mobile site, add this line to the `<head>` section of your
 main site's `index.html` file:
 
-    <script src="/m/js/redirect.js"></script>
+	<script src="/m/js/redirect.js"></script>
 
-8. Now go to http://www.band-o-rama.com/artists and register your band
+8. Now go to [http://www.band-o-rama.com/artists](http://www.band-o-rama.com/artists) and register your band
 for the Band-o-rama service so that listeners can find you on there!
 
 ## Credits
