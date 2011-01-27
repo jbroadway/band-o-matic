@@ -204,7 +204,7 @@ class Bandorama {
 	function public_shows () {
 		$shows_rss = $this->shows_rss ();
 		// do we have an RSS feed and has it been an hour?
-		if (true || $shows_rss && $shows_rss->last_checked < time() - 3600) {
+		if ($shows_rss && $shows_rss->last_checked < time() - 3600) {
 			error_reporting (0);
 			require_once ('lib/Simplepie.php');
 			$sp = new SimplePie ();
