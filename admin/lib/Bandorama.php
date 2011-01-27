@@ -65,6 +65,14 @@ class Bandorama {
 			body text not null,
 			css text not null
 		)');
+		db_execute ('create table shows_rss (
+			feed char(128) not null,
+			last_checked TIMESTAMP not null
+		)');
+		db_execute ('create table show_imports (
+			show_id int not null,
+			orig_id char(128) not null
+		)');
 	}
 
 	/**
@@ -161,6 +169,172 @@ class Bandorama {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Get or set the shows RSS feed.
+	 */
+	function shows_rss ($feed = false) {
+		if (! $feed) {
+			return db_single ('select * from shows_rss');
+		}
+		if (db_single ('select * from shows_rss')) {
+			$res = db_execute (
+				'update shows_rss set feed = %s, last_checked = 0',
+				$feed
+			);
+		} else {
+			$res = db_execute (
+				'insert into shows_rss values (%s, 0)',
+				$feed
+			);
+		}
+
+		if (! $res) {
+			$this->error = db_error ();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Get shows for public site, reading and saving RSS if necessary.
+	 * Handles ArtistData and GigPress feeds.
+	 */
+	function public_shows () {
+		$shows_rss = $this->shows_rss ();
+		// do we have an RSS feed and has it been an hour?
+		if (true || $shows_rss && $shows_rss->last_checked < time() - 3600) {
+			error_reporting (0);
+			require_once ('lib/Simplepie.php');
+			$sp = new SimplePie ();
+			$sp->set_cache_location ('./files');
+			$sp->set_cache_duration (1800);
+			$sp->set_feed_url ($shows_rss->feed);
+			$sp->init ();
+			if ($sp->error ()) {
+				// artistdata feeds
+				if (isset ($sp->data['child']['']['shows'][0]['child']['']['show'])) {
+					foreach ($sp->data['child']['']['shows'][0]['child']['']['show'] as $item) {
+						$id = $item['child']['']['recordKey'][0]['data'];
+						$date = $item['child']['']['date'][0]['data'];
+						$time = array_shift (explode ('.', $item['child']['']['timeSet'][0]['data']));
+						$city = $item['child']['']['city'][0]['data'];
+						$venue = $item['child']['']['venueName'][0]['data'];
+						if (! empty ($item['child']['']['name'][0]['data'])) {
+							$info = $item['child']['']['name'][0]['data'];
+						} else {
+							$info = $item['child']['']['description'][0]['data'];
+						}
+						$ticket_link = $item['child']['']['ticketURI'][0]['data'];
+						// check for duplicate and update
+						// else insert
+						$dupe_id = db_shift ('select show_id from show_imports where orig_id = %s', $id);
+						if ($dupe_id) {
+							$res = db_execute (
+								'update shows set date = %s, time = %s, city = %s, venue = %s, info = %s, ticket_link = %s where id = %d',
+								$date,
+								$time,
+								$city,
+								$venue,
+								$info,
+								$ticket_link,
+								$dupe_id
+							);
+						} else {
+							$res = db_execute (
+								'insert into shows values (null, %s, %s, %s, %s, %s, %s)',
+								$date,
+								$time,
+								$city,
+								$venue,
+								$info,
+								$ticket_link
+							);
+							db_execute (
+								'insert into show_imports values (%d, %s)',
+								db_lastid (),
+								$id
+							);
+						}
+					}
+				}
+			} else {
+				foreach ($sp->get_items () as $item) {
+					$desc = $item->get_description ();
+
+					$id = $item->get_id ();
+
+					preg_match ('/<strong>Date:<\/strong>\s?([^<]+)<\/li>/', $desc, $m);
+					$date = date ('Y-m-d', strtotime (trim ($m[1])));
+
+					preg_match ('/<strong\>Time:<\/strong>\s+?([0-9]+):([0-9]+)(am|pm)/', $desc, $m); //([0-9]+):([0-9]+)(am|pm)<\/li>/', $desc, $m);
+					if (isset ($m[1])) {
+						if ($m[3] == 'am') {
+							$time = str_pad ($m[1], 2, '0', STR_PAD_LEFT) . ':' . $m[2] . ':00';
+						} else {
+							$time = ($m[1] + 12) . ':' . $m[2] . ':00';
+						}
+					} else {
+						$time = '20:00:00';
+					}
+
+					preg_match ('/<strong>City:<\/strong>\s+?([^<]+)<\/li>/', $desc, $m);
+					$city = trim ($m[1]);
+
+					preg_match ('/<strong>Venue:<\/strong>\s+?<a.*>(.*)<\/a><\/li>/', $desc, $m);
+					$venue = trim ($m[1]);
+
+					preg_match ('/<strong>Notes:<\/strong>\s+?([^<]+)<\/li>/', $desc, $m);
+					if (isset ($m[1])) {
+						$info = trim ($m[1]);
+					} else {
+						$info = '';
+					}
+
+					preg_match ('/<a href="([^"]+)".*class="gigpress-tickets-link">/', $desc, $m);
+					if (isset ($m[1])) {
+						$ticket_link = trim ($m[1]);
+					} else {
+						$ticket_link = '';
+					}
+
+					// check for duplicate and update
+					// else insert
+					$dupe_id = db_shift ('select show_id from show_imports where orig_id = %s', $id);
+					if ($dupe_id) {
+						$res = db_execute (
+							'update shows set date = %s, time = %s, city = %s, venue = %s, info = %s, ticket_link = %s where id = %d',
+							$date,
+							$time,
+							$city,
+							$venue,
+							$info,
+							$ticket_link,
+							$dupe_id
+						);
+					} else {
+						$res = db_execute (
+							'insert into shows values (null, %s, %s, %s, %s, %s, %s)',
+							$date,
+							$time,
+							$city,
+							$venue,
+							$info,
+							$ticket_link
+						);
+						db_execute (
+							'insert into show_imports values (%d, %s)',
+							db_lastid (),
+							$id
+						);
+					}
+				}
+			}
+			// don't check again for an hour
+			db_execute ('update shows_rss set last_checked = %s', time());
+		}
+		return $this->list_shows ();
 	}
 
 	/**

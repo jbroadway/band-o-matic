@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
  	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
  	<script src="js/jquery.jplayer.min.js"></script>
+ 	<script src="js/jquery.jgfeed-min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
 	<script type="text/javascript" src="js/band-o-rama.js"></script>
 	<script type="text/javascript" src="admin/public_config.php"></script>

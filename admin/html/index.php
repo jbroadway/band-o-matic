@@ -15,9 +15,9 @@ if (isset ($updated) && $updated) {
 <form method="post">
 <p>Artist name:<br /><input type="text" name="artist_name" value="<?php echo $general->artist_name; ?>" size="50" /></p>
 
-<p>Twitter ID:<br /><input type="text" name="twitter_id" value="<?php echo $general->twitter_id; ?>" size="30" /></p>
+<p>Twitter ID or News RSS:<br /><input type="text" name="twitter_id" value="<?php echo $general->twitter_id; ?>" size="50" /></p>
 
-<p>Show Twitter posts: <select name="twitter_posts">
+<p>Show Twitter/News posts: <select name="twitter_posts">
 	<option value="5"<?php if ($general->twitter_posts == 5) { echo ' selected'; } ?>>5</option>
 	<option value="10"<?php if ($general->twitter_posts == 10) { echo ' selected'; } ?>>10</option>
 	<option value="15"<?php if ($general->twitter_posts == 15) { echo ' selected'; } ?>>15</option>

@@ -4,6 +4,13 @@
 
 <p><a href="shows_add.php">Add a show</a></p>
 
+<form method="post">
+<p>Shows RSS:<br />
+<input type="text" name="shows_rss" value="<?php if ($shows_rss) { echo $shows_rss->feed; } ?>" size="50" /></p>
+
+<p><input type="submit" value="Save" /></p>
+</form>
+
 <h3>Upcoming Shows</h3>
 
 <?php

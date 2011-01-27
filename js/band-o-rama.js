@@ -169,9 +169,11 @@ var _br = (function ($) {
 			$('#br-twitter').append (
 				$('<h2>' + br.news_title + '</h2><ul id="br-twitter-feed"></ul>')
 			);
-			$('#br-twitter').append (
-				$('<p><a href="http://twitter.com/' + br.twitter_user + '" target="_top">All updates</a></p>')
-			);
+			if (br.twitter_user.match (/^[a-zA-Z0-9_-]+$/)) {
+				$('#br-twitter').append (
+					$('<p><a href="http://twitter.com/' + br.twitter_user + '" target="_top">All updates</a></p>')
+				);
+			}
 		}
 
 		if (br.email_page) {
@@ -241,8 +243,10 @@ var _br = (function ($) {
 
 		timeout = setTimeout ('_br.popupMessage ();', br.initial_popup_delay);
 
-		if (br.twitter_user) {
+		if (br.twitter_user.match (/^[a-zA-Z0-9_-]+$/)) {
 			$.getScript ('http://twitter.com/statuses/user_timeline/' + br.twitter_user + '.json?callback=_br_twitter_callback&count=' + br.twitter_count);
+		} else if (br.twitter_user) {
+			$.jGFeed (br.twitter_user, _br_newsrss_callback, br.twitter_count);
 		}
 
 		if (br.shows_url) {
@@ -400,6 +404,23 @@ function _br_twitter_callback (data) {
 			$('<li>' + _br.linkify (data[i].text) + '</li>')
 		);
 	}
+}
+
+function _br_newsrss_callback (feed) {
+	if (! feed) {
+		return false;
+	}
+
+	_br.twitter_feed = feed;
+	for (var i = 0; i < feed.entries.length; i++) {
+		_br.messages['index'].push ('News: ' + feed.entries[i].title + ' ' + feed.entries[i].link);
+		$('ul#br-twitter-feed').append (
+			$('<li>' + _br.linkify (feed.entries[i].title + ' ' + feed.entries[i].link) + '</li>')
+		);
+	}
+	$('#br-twitter').append (
+		$('<p><a href="' + feed.link + '" target="_top">All updates</a></p>')
+	);
 }
 
 function _br_shows_callback (data) {
