@@ -4,6 +4,16 @@
 
 <p><a href="shows_add.php">Add a show</a></p>
 
+<?php
+
+if (isset ($updated) && $updated) {
+	echo '<p class="notice">Your settings have been saved.</p>';
+} elseif (isset ($updated) && ! $updated) {
+	echo '<p class="error">Failed to save the settings: ' . $br->error . '</p>';
+}
+
+?>
+
 <form method="post">
 <p>Shows RSS:<br />
 <input type="text" name="shows_rss" value="<?php if ($shows_rss) { echo $shows_rss->feed; } ?>" size="50" /></p>

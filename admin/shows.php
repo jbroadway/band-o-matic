@@ -4,7 +4,11 @@ $page = basename (__FILE__, '.php');
 require_once ('init.php');
 
 if ($_POST['shows_rss']) {
-	$br->shows_rss ($_POST['shows_rss']);
+	if (! $br->shows_rss ($_POST['shows_rss'])) {
+		$updated = false;
+	} else {
+		$updated = true;
+	}
 }
 
 $shows_rss = $br->shows_rss ();
