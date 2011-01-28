@@ -342,7 +342,7 @@ class Bandorama {
 	 */
 	function list_shows () {
 		return db_fetch_array (
-			'select * from shows where date >= %s order by date desc, time desc',
+			'select * from shows where date >= %s order by date asc, time asc',
 			gmdate('Y-m-d')
 		);
 	}
