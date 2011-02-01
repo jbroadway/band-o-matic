@@ -178,3 +178,8 @@ object {
 	padding: 0px;
 	background-image: url(browse.png);
 }
+
+#themes img {
+	margin-right: 5px;
+	margin-bottom: 5px;
+}

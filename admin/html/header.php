@@ -64,6 +64,15 @@
 				}
 			});
 		});
+		function theme_select (theme, image_type) {
+			$('#bg_320x480').attr ('value', '<?php echo $settings['prefix']; ?>themes/' + theme + '/320x480.' + image_type);
+			$('#bg_480x320').attr ('value', '<?php echo $settings['prefix']; ?>themes/' + theme + '/480x320.' + image_type);
+			$('#bg_768').attr ('value', '<?php echo $settings['prefix']; ?>themes/' + theme + '/768x1024.' + image_type);
+			$('#bg_1024').attr ('value', '<?php echo $settings['prefix']; ?>themes/' + theme + '/1024x768.' + image_type);
+			$('#icon').attr ('value', '<?php echo $settings['prefix']; ?>themes/' + theme + '/icon.jpg');
+			$('#themes').hide ('slow');
+			return false;
+		}
 	</script>
 </head>
 <body>

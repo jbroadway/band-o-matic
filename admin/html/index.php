@@ -44,6 +44,21 @@ http://www.your-band.com/photos/live-shot-01.jpg</p>
 <p>iPad landscape: (link to 1024x768 jpg file)<br />
 <input type="text" name="bg_1024" id="bg_1024" placeholder="/m/pix/bg_1024.jpg" value="<?php echo $general->bg_1024; ?>" size="50" /> <input type="file" id="file_bg_1024" class="jpg" /></p>
 
+<p><a href="#" onclick="$('#themes').toggle ('slow'); return false">Or choose a theme</a></p>
+
+<div id="themes" style="display: none">
+<a href="#" onclick="return theme_select ('theme1', 'png')"><img src="themes/theme1/thumb.jpg" /></a>
+<a href="#" onclick="return theme_select ('theme2', 'png')"><img src="themes/theme2/thumb.jpg" /></a>
+<a href="#" onclick="return theme_select ('theme3', 'jpg')"><img src="themes/theme3/thumb.jpg" /></a>
+<a href="#" onclick="return theme_select ('theme4', 'jpg')"><img src="themes/theme4/thumb.jpg" /></a>
+<a href="#" onclick="return theme_select ('theme5', 'jpg')"><img src="themes/theme5/thumb.jpg" /></a>
+<a href="#" onclick="return theme_select ('theme6', 'jpg')"><img src="themes/theme6/thumb.jpg" /></a>
+<a href="#" onclick="return theme_select ('theme7', 'jpg')"><img src="themes/theme7/thumb.jpg" /></a>
+<a href="#" onclick="return theme_select ('theme8', 'jpg')"><img src="themes/theme8/thumb.jpg" /></a>
+<a href="#" onclick="return theme_select ('theme9', 'jpg')"><img src="themes/theme9/thumb.jpg" /></a>
+<a href="#" onclick="return theme_select ('theme10', 'jpg')"><img src="themes/theme10/thumb.jpg" /></a>
+</div>
+
 <p><input type="submit" value="Save" /></p>
 </form>
 
