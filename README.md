@@ -1,27 +1,28 @@
-# Band-o-rama
+# Band-o-matic
 
-Band-o-rama is 2 things:
+Band-o-matic is an open source web application for bands to create beautiful iPhone/iPad/mobile websites. Think of it like Wordpress for mobile band sites. Features include:
 
-1. An open source tool for bands to create gorgeous iPhone/iPad websites. Think of it like Wordpress for mobile band sites.
-2. A service to help music lovers discover and connect with new bands.
+* Beautiful full-screen photos and album covers for backgrounds, or choose from 10 built-in themes
+* Auto-resizing for multiple device sizes/orientations
+* Automatically pulls your latest news from RSS or Twitter
+* Automatically pulls your show listings from RSS (Gigpress or Artistdata currently work)
+* Popups show fresh messages, including links and photos, to visitors while they listen
+* Music is organized into albums for listening
+* Customizable contact/email page to connect with fan newsletter, and link to Facebook, Twitter, etc.
 
-Both are free. This page is about part 1. Part 2 can be found on the official
-Band-o-rama homepage here:
+Band-o-matic also ties into [http://www.band-o-rama.com/](http://www.band-o-rama.com/), a free iPhone/iPad app for listeners to discover and share new music and connect with new bands.
 
-* [http://www.band-o-rama.com/](http://www.band-o-rama.com/)
-
-An example of a real Band-o-rama mobile site is:
+An example of a real Band-o-matic mobile site is:
 
 * [http://www.johnnybroadway.com/m](http://www.johnnybroadway.com/m)
 
-Visit that link on your iPhone or iPad to see how a Band-o-rama site
-looks and feels (also works in most browsers too).
+Visit that link on your iPhone or iPad to see how a Band-o-matic site looks and feels (also works in most browsers too).
 
 ## Getting Help
 
-The official discussion group page for Band-o-rama is:
+The official discussion group page for Band-o-matic is:
 
-* [http://band-o-rama.posterous.com/](http://band-o-rama.posterous.com/)
+* [http://band-o-matic.posterous.com/](http://band-o-matic.posterous.com/)
 
 ## Prerequisites
 
@@ -35,9 +36,9 @@ You'll need a few things to setup a mobile site for your band:
 
 ## Getting Started
 
-1. Download a copy of the Band-o-rama software from this page:
+1. Download a copy of the Band-o-matic software from this page:
 
-* [http://github.com/jbroadway/band-o-rama/downloads](http://github.com/jbroadway/band-o-rama/downloads)
+* [http://github.com/jbroadway/band-o-matic/downloads](http://github.com/jbroadway/band-o-matic/downloads)
 
 2. Unzip the download then use an FTP program to upload it to a folder
 named 'm' on your website. This will be where people find the mobile
@@ -76,11 +77,11 @@ for the Band-o-rama service so that listeners can find you on there!
 
 ## Credits
 
-Band-o-rama was created by [Johnny Broadway](http://www.johnnybroadway.com/)
+Band-o-matic was created by [Johnny Broadway](http://www.johnnybroadway.com/)
 and released under the [GPL Version 2](http://opensource.org/licenses/gpl-2.0.php)
 license.
 
-Band-o-rama also makes use of a few 3rd-party open source libraries:
+Band-o-matic also makes use of a few 3rd-party open source libraries:
 
 * [jQuery](http://jquery.com/)
 * [jQuery Mobile](http://jquerymobile.com/)
