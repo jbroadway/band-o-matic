@@ -10,7 +10,7 @@ Band-o-matic is an open source web application for bands to create beautiful iPh
 * Music is organized into albums for listening
 * Customizable contact/email page to connect with fan newsletter, and link to Facebook, Twitter, etc.
 
-Band-o-matic also ties into [http://www.band-o-rama.com/](http://www.band-o-rama.com/), a free iPhone/iPad app for listeners to discover and share new music and connect with new bands.
+Band-o-matic also ties into [Band-o-rama](http://www.band-o-rama.com/), a free iPhone/iPad app for listeners to discover and share new music and connect with new bands.
 
 An example of a real Band-o-matic mobile site is:
 
