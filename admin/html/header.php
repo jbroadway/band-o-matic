@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Band-o-rama - Artist Admin</title>
+	<title>Band-o-matic - Artist Admin</title>
 	<link rel="stylesheet" type="text/css" href="js/uploadify/uploadify.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.7.custom.css" />
