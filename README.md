@@ -93,3 +93,4 @@ Band-o-matic also makes use of a few 3rd-party open source libraries:
 * [PHP](http://php.net/)
 * [SQLite](http://www.sqlite.org/)
 * [SimplePie](http://simplepie.org/)
+* [SG-iCalendar](http://github.com/fangel/SG-iCalendar)

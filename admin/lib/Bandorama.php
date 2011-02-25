@@ -199,7 +199,7 @@ class Bandorama {
 
 	/**
 	 * Get shows for public site, reading and saving RSS if necessary.
-	 * Handles ArtistData and GigPress feeds.
+	 * Handles ArtistData and GigPress feeds, and ICS files.
 	 */
 	function public_shows () {
 		$shows_rss = $this->shows_rss ();
@@ -258,6 +258,63 @@ class Bandorama {
 							);
 						}
 					}
+				// assume it's an ics file
+				} else {
+					require_once ('lib/SG_iCalendar/SG_iCal.php');
+					$ical = new SG_iCal ($shows_rss->feed);
+					// get the timezone of the file
+					$info = $ical->getCalendarInfo ();
+					$zone = 'GMT'; // default timezone
+					foreach ($info->getIterator () as $k => $v) {
+						if (strtolower ($k) == 'x-wr-timezone') {
+							$zone = $v;
+							break;
+						}
+					}
+					date_default_timezone_set ($zone);
+
+					foreach ($ical->getEvents () as $event) {
+						$id = $event->getUID ();
+						$date = date ('Y-m-d', $event->getStart ());
+						$time = date ('H:i:s', $event->getStart ());
+						$city = $event->getLocation ();
+						$venue = $event->getSummary ();
+						$info = $event->getDescription ();
+						$ticket_link = $event->getProperty ('url');
+
+						// check for duplicate and update
+						// else insert
+						$dupe_id = db_shift ('select show_id from show_imports where orig_id = %s', $id);
+						if ($dupe_id) {
+							$res = db_execute (
+								'update shows set date = %s, time = %s, city = %s, venue = %s, info = %s, ticket_link = %s where id = %d',
+								$date,
+								$time,
+								$city,
+								$venue,
+								$info,
+								$ticket_link,
+								$dupe_id
+							);
+						} else {
+							$res = db_execute (
+								'insert into shows values (null, %s, %s, %s, %s, %s, %s)',
+								$date,
+								$time,
+								$city,
+								$venue,
+								$info,
+								$ticket_link
+							);
+							db_execute (
+								'insert into show_imports values (%d, %s)',
+								db_lastid (),
+								$id
+							);
+						}
+					}
+					
+					date_default_timezone_set ('GMT');
 				}
 			} else {
 				foreach ($sp->get_items () as $item) {

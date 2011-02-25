@@ -15,7 +15,7 @@ if (isset ($updated) && $updated) {
 ?>
 
 <form method="post">
-<p>Shows RSS:<br />
+<p>Shows iCalendar or RSS link (<a href="http://artistdata.com/">Artistdata</a> and <a href="http://gigpress.com/">Gigpress</a> RSS supported):<br />
 <input type="text" name="shows_rss" value="<?php if ($shows_rss) { echo $shows_rss->feed; } ?>" size="50" /></p>
 
 <p><input type="submit" value="Save" /></p>
