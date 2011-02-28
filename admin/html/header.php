@@ -78,7 +78,7 @@
 <body>
 <div id="wrapper">
 
-<h1 id="title">Artist Admin</h1>
+<h1 id="title"><img src="pix/logo.png" alt="Band-o-matic" /><span class="title">Artist Admin</span></h1>
 
 <div id="nav">
 <?php if (! $unauthorized) { ?>
