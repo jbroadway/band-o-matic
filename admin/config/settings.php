@@ -4,7 +4,7 @@
 admin_username = "default"
 
 ; Set this to the admin password
-admin_password = "default2"
+admin_password = "default"
 
 ; Default city for shows (your home town)
 default_city = "Winnipeg, MB"
