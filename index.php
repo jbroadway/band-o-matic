@@ -23,11 +23,11 @@
 <body>
 
 <div id="br-play-pause">
-<a href="#" onclick="return _br.playPause ()" id="br-play-link"></a>
+<a href="#" onclick="return _br.playPause ()" id="br-play-link" title="Play/Pause"></a>
 </div>
 
 <div id="br-pages">
-<a href="javascript:void(0);" class="br-page-link active" id="br-link-index" onclick="return _br.changePage ('index')"></a>
+<a href="javascript:void(0);" class="br-page-link active" id="br-link-index" onclick="return _br.changePage ('index')" title="Home"></a>
 </div>
 
 <?php require_once ('admin/public_pages.php'); ?>

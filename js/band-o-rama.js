@@ -149,7 +149,7 @@ var _br = (function ($) {
 
 		if (br.shows_url) {
 			$('#br-play-pause').append (
-				$('<a rel="br-shows" class="br-top-link" id="br-link-shows"></a>')
+				$('<a rel="br-shows" class="br-top-link" id="br-link-shows" title="Shows"></a>')
 			);
 			$('#index').before (
 				$('<div id="br-shows"></div>')
@@ -161,7 +161,7 @@ var _br = (function ($) {
 
 		if (br.twitter_user) {
 			$('#br-play-pause').append (
-				$('<a rel="br-twitter" class="br-top-link" id="br-link-news"></a>')
+				$('<a rel="br-twitter" class="br-top-link" id="br-link-news" title="News"></a>')
 			);
 			$('#index').before (
 				$('<div id="br-twitter"></div>')
@@ -178,7 +178,7 @@ var _br = (function ($) {
 
 		if (br.email_page) {
 			$('#br-play-pause').append (
-				$('<a rel="br-email" class="br-top-link" id="br-link-email"></a>')
+				$('<a rel="br-email" class="br-top-link" id="br-link-email" title="Contact Page"></a>')
 			);
 		}
 
@@ -237,7 +237,7 @@ var _br = (function ($) {
 				br.pages[i].transition = 'slide';
 			}
 			$('#br-pages').append (
-				$('<a href="javascript:void(0);" class="br-page-link" id="br-link-' + i + '" onclick="return _br.changePage (\'' + i + '\')"></a>')
+				$('<a href="javascript:void(0);" class="br-page-link" id="br-link-' + i + '" onclick="return _br.changePage (\'' + i + '\')" title="Play Album: ' + i.replace ('-', ' ') + '"></a>')
 			);
 		}
 
