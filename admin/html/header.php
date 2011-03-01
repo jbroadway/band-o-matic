@@ -9,6 +9,7 @@
 	<script type="text/javascript" src="js/jquery.pager.js"></script>
 	<script type="text/javascript" src="js/uploadify/swfobject.js"></script>
 	<script type="text/javascript" src="js/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/admin.js"></script>
 	<script type="text/javascript">
 		$(document).ready (function () {
 			$('table.list').pager ('tbody', {
@@ -83,6 +84,7 @@
 <div id="nav">
 <?php if (! $unauthorized) { ?>
 <a href="logout.php">Log Out</a>
+<a href="bandorama.php"<?php if (preg_match ('/^bandorama/', $page)) { echo ' class="active"'; } ?>>Band-o-rama</a>
 <a href="email.php"<?php if (preg_match ('/^email/', $page)) { echo ' class="active"'; } ?>>Email Page</a>
 <a href="music.php"<?php if (preg_match ('/^music/', $page)) { echo ' class="active"'; } ?>>Music</a>
 <a href="shows.php"<?php if (preg_match ('/^shows/', $page)) { echo ' class="active"'; } ?>>Shows</a>

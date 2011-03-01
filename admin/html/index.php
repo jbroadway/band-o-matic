@@ -1,5 +1,16 @@
 <?php require_once ('html/header.php'); ?>
 
+<script type="text/javascript">
+
+$(document).ready (function () {
+	_admin.registered_for_bandorama ();
+});
+
+</script>
+
+<div id="registered-for-bandorama">Register your band for the Band-o-rama iPhone &amp; iPad app, it's a great way to get heard and grow your fanbase!<br />
+Plus it's free, just like Band-o-matic! <a href="http://www.band-o-rama.com/artists" target="_blank">Click here to register</a></div>
+
 <h2>General Settings</h2>
 
 <?php
