@@ -1,8 +1,8 @@
 /*
- * Band-o-rama
- * Platform for building gorgeous mobile/tablet sites for bands.
+ * Band-o-matic
+ * Platform for building beautiful mobile/tablet websites for bands.
  *
- * http://www.band-o-rama.com/
+ * http://www.band-o-matic.org/
  *
  * Copyright (c) 2010-2011 Johnny Broadway
  *
