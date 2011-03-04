@@ -196,6 +196,7 @@ var _br = (function ($) {
 			'autoScale': false,
 			'type': 'inline',
 			'href': '#br-twitter',
+			'titleShow': false,
 			'onStart': function () {
 				$('#br-twitter').show ();
 			},
@@ -212,6 +213,7 @@ var _br = (function ($) {
 			'autoScale': false,
 			'type': 'inline',
 			'href': '#br-shows',
+			'titleShow': false,
 			'onStart': function () {
 				$('#br-shows').show ();
 			},
@@ -226,6 +228,7 @@ var _br = (function ($) {
 			'transitionIn': 'elastic',
 			'transitionOut': 'elastic',
 			'type': 'iframe',
+			'titleShow': false,
 			'href': br.email_page
 		});
 
