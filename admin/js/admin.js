@@ -7,7 +7,6 @@ var _admin = (function ($) {
 	};
 
 	admin.bandorama_info = function () {
-		url = 'http://johnnybroadway.blnk.cc';
 		$.getScript ('http://www.band-o-rama.com/artist/info?callback=bandorama_info&url=' + escape (url));
 	};
 
