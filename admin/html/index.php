@@ -11,6 +11,10 @@ $(document).ready (function () {
 <div id="registered-for-bandorama">Register your band for the Band-o-rama iPhone &amp; iPad app, it's a great way to get heard and grow your fanbase!<br />
 Plus it's free, just like Band-o-matic! <a href="http://www.band-o-rama.com/artists" target="_blank">Click here to register</a></div>
 
+<div id="qr-code"><img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=http%3A%2F%2F<?php echo $_SERVER['HTTP_HOST']; ?>%2F&choe=UTF-8" border="0" alt="QR Code" /><br />
+Use the above <a href="http://en.wikipedia.org/wiki/QR_code" target="_blank">QR code</a> in flyers and giveaway cards to send fans to your mobile site.
+</div>
+
 <h2>General Settings</h2>
 
 <?php
@@ -35,7 +39,7 @@ if (isset ($updated) && $updated) {
 </select> (5 is recommended for phones)</p>
 
 <p>Homepage popup messages (one-per-line):<br />
-<textarea name="popups" rows="12" cols="90"><?php echo htmlentities ($general->popups); ?></textarea></p>
+<textarea name="popups" rows="12" cols="82"><?php echo htmlentities ($general->popups); ?></textarea></p>
 
 <p class="example"><strong>Popup examples:</strong><br />
 Buy our new album on &lt;a href="...itunes link..."&gt;iTunes&lt;/a&gt;<br />

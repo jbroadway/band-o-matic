@@ -217,3 +217,13 @@ object {
 	#registered-for-bandorama a {
 		color: #d37200;
 	}
+
+#qr-code {
+	width: 200px;
+	height: 200px;
+	float: right;
+}
+
+	#qr-code img {
+		border: 1px solid #ccc;
+	}
