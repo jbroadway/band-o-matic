@@ -198,10 +198,11 @@ var _br = (function ($) {
 			'href': '#br-twitter',
 			'titleShow': false,
 			'onStart': function () {
-				$('#br-twitter').show ();
+				$('#br-shows').css ('z-index', -1).hide ();
+				$('#br-twitter').css ('z-index', 4).show ();
 			},
 			'onClosed': function () {
-				$('#br-twitter').hide ();
+				$('#br-twitter').css ('z-index', -1).hide ();
 			}
 		});
 
@@ -215,10 +216,11 @@ var _br = (function ($) {
 			'href': '#br-shows',
 			'titleShow': false,
 			'onStart': function () {
-				$('#br-shows').show ();
+				$('#br-twitter').css ('z-index', -1).hide ();
+				$('#br-shows').css ('z-index', 4).show ();
 			},
 			'onClosed': function () {
-				$('#br-shows').hide ();
+				$('#br-shows').css ('z-index', -1).hide ();
 			}
 		});
 
@@ -229,7 +231,11 @@ var _br = (function ($) {
 			'transitionOut': 'elastic',
 			'type': 'iframe',
 			'titleShow': false,
-			'href': br.email_page
+			'href': br.email_page,
+			'onStart': function () {
+				$('#br-twitter').css ('z-index', -1).hide ();
+				$('#br-shows').css ('z-index', -1).hide ();
+			}
 		});
 
 		for (var i in br.pages) {

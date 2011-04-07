@@ -171,7 +171,7 @@ div[data-role=page] {
 	}
 
 #br-shows, #br-twitter {
-	z-index: 4;
+	z-index: -1;
 	position: relative;
 	top: 0px;
 	left: 0px;
