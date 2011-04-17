@@ -124,6 +124,11 @@ class Bandomatic {
 				$vals['bg_768'],
 				$vals['bg_1024']
 			);
+
+			if (isset ($vals['body'])) {
+				$vals['title'] = $vals['artist_name'];
+				$this->about_page ($vals);
+			}
 		} else {
 			$res = db_execute (
 				'insert into general_settings values(%s, %s, %d, %s, %s, %s, %s, %s)',
@@ -136,11 +141,11 @@ class Bandomatic {
 				$vals['bg_768'],
 				$vals['bg_1024']
 			);
-		}
 
-		if (isset ($vals['body'])) {
-			$vals['title'] = $vals['artist_name'];
-			$this->about_page ($vals);
+			if (isset ($vals['body'])) {
+				$vals['title'] = $vals['artist_name'];
+				$this->about_page ($vals);
+			}
 		}
 
 		if (! $res) {
