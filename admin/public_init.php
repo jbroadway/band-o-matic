@@ -15,8 +15,8 @@ if (! db_open ('config/database.db')) {
 	die (db_error ());
 }
 
-require_once ('lib/Bandorama.php');
+require_once ('lib/Bandomatic.php');
 
-$br = new Bandorama ($settings);
+$br = new Bandomatic ($settings);
 
 ?>

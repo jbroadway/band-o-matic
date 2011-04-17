@@ -2,7 +2,7 @@
 
 require_once ('lib/Database.php');
 
-class Bandorama {
+class Bandomatic {
 	/**
 	 * The global settings.
 	 */
