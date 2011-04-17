@@ -478,11 +478,6 @@ function _br_newsrss_callback (feed) {
 	$('#br-twitter').append (
 		'<p><a href="' + feed.link + '" target="_top">All updates</a></p>'
 	);
-	if (_br.web || _br.ipad) {
-		$('#br-index-news').append (
-			'<p><a href="' + feed.link + '" target="_top">All updates</a></p>'
-		);
-	}
 }
 
 function _br_shows_callback (data) {
