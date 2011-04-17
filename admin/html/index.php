@@ -32,13 +32,17 @@ if (isset ($updated) && $updated) {
 
 <p>Twitter ID or News RSS:<br /><input type="text" name="twitter_id" value="<?php echo $general->twitter_id; ?>" size="50" /></p>
 
-<p>Show Twitter/News posts: <select name="twitter_posts">
+<!-- p>Show Twitter/News posts: <select name="twitter_posts">
 	<option value="5"<?php if ($general->twitter_posts == 5) { echo ' selected'; } ?>>5</option>
 	<option value="10"<?php if ($general->twitter_posts == 10) { echo ' selected'; } ?>>10</option>
 	<option value="15"<?php if ($general->twitter_posts == 15) { echo ' selected'; } ?>>15</option>
-</select> (5 is recommended for phones)</p>
+</select> (5 is recommended for phones)</p -->
+<input type="hidden" name="twitter_posts" value="5" />
 
-<p>Homepage popup messages (one-per-line):<br />
+<p>About/bio page (HTML):<br />
+<textarea name="body" id="body" rows="20" cols="82"><?php echo htmlentities ($about_page->body); ?></textarea></p>
+
+<p>Homepage popup messages for phones (one-per-line):<br />
 <textarea name="popups" rows="12" cols="82"><?php echo htmlentities ($general->popups); ?></textarea></p>
 
 <p class="example"><strong>Popup examples:</strong><br />

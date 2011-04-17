@@ -69,6 +69,12 @@ var _br = (function ($) {
 
 	br.ipad = navigator.userAgent.match (/iPad/i) ? true : false;
 
+	br.android = navigator.userAgent.match (/Android/i) ? true : false;
+
+	br.web = (! br.iphone && ! br.ipad && ! br.android) ? true : false;
+	
+	br.mobile = ! br.web;
+
 	br.pages = {
 		'index': {direction: false}
 	};
@@ -120,6 +126,14 @@ var _br = (function ($) {
 		$(document).bind ('orientationchange', br.setOrientation);
 		br.setOrientation ();
 
+		if (br.web || br.ipad) {
+			$('body').append ('<link  rel="stylesheet" type="text/css" href="css/band-o-matic-web.css" />');
+		}
+
+		if (br.web || br.ipad) {
+			br.twitter_count = 10;
+		}
+
 		$('title').html (br.artist_name);
 
 		br.preload (
@@ -147,6 +161,20 @@ var _br = (function ($) {
 			}
 		}
 
+		if (br.about_page || true) {
+			//$('#br-play-pause').append (
+			//	$('<a rel="br-email" class="br-top-link" id="br-link-email" title="Contact Page"></a>')
+			//);
+			if (br.web || br.ipad) {
+				$('body').append (
+					'<div id="br-index-about"></div>'
+				);
+				$.get (br.about_page, function (res) {
+					$('#br-index-about').append (res);
+				});
+			}
+		}
+
 		if (br.shows_url) {
 			$('#br-play-pause').append (
 				$('<a rel="br-shows" class="br-top-link" id="br-link-shows" title="Shows"></a>')
@@ -157,6 +185,11 @@ var _br = (function ($) {
 			$('#br-shows').append (
 				$('<h2>' + br.shows_title + '</h2><ul id="br-shows-list"></ul>')
 			);
+			if (br.web || br.ipad) {
+				$('body').append (
+					'<div id="br-index-shows"><h2>' + br.shows_title + '</h2><ul id="br-index-shows-list"></ul><a href="#" onclick="$(\'#br-link-shows\').trigger (\'click\'); return false">More shows</a>'
+				);
+			}
 		}
 
 		if (br.twitter_user) {
@@ -172,6 +205,11 @@ var _br = (function ($) {
 			if (br.twitter_user.match (/^[a-zA-Z0-9_-]+$/)) {
 				$('#br-twitter').append (
 					$('<p><a href="http://twitter.com/' + br.twitter_user + '" target="_top">All updates</a></p>')
+				);
+			}
+			if (br.web || br.ipad) {
+				$('body').append (
+					'<div id="br-index-news"><h2>' + br.news_title + '</h2><ul id="br-index-feed"></ul><a href="#" onclick="$(\'#br-link-news\').trigger (\'click\'); return false">More news</a>'
 				);
 			}
 		}
@@ -410,8 +448,13 @@ function _br_twitter_callback (data) {
 	for (var i in data) {
 		_br.messages['index'].push ('Twitter: ' + data[i].text);
 		$('ul#br-twitter-feed').append (
-			$('<li>' + _br.linkify (data[i].text) + '</li>')
+			'<li>' + _br.linkify (data[i].text) + '</li>'
 		);
+		if ((_br.web || _br.ipad) && i < 2) {
+			$('ul#br-index-feed').append (
+				'<li>' + _br.linkify (data[i].text) + '</li>'
+			);
+		}
 	}
 }
 
@@ -424,26 +467,46 @@ function _br_newsrss_callback (feed) {
 	for (var i = 0; i < feed.entries.length; i++) {
 		_br.messages['index'].push ('News: ' + feed.entries[i].title + ' ' + feed.entries[i].link);
 		$('ul#br-twitter-feed').append (
-			$('<li>' + _br.linkify (feed.entries[i].title + ' ' + feed.entries[i].link) + '</li>')
+			'<li>' + _br.linkify (feed.entries[i].title + ' ' + feed.entries[i].link) + '</li>'
 		);
+		if ((_br.web || _br.ipad) && i < 2) {
+			$('ul#br-index-feed').append (
+				'<li>' + _br.linkify (feed.entries[i].title + ' ' + feed.entries[i].link) + '</li>'
+			);
+		}
 	}
 	$('#br-twitter').append (
-		$('<p><a href="' + feed.link + '" target="_top">All updates</a></p>')
+		'<p><a href="' + feed.link + '" target="_top">All updates</a></p>'
 	);
+	if (_br.web || _br.ipad) {
+		$('#br-index-news').append (
+			'<p><a href="' + feed.link + '" target="_top">All updates</a></p>'
+		);
+	}
 }
 
 function _br_shows_callback (data) {
 	_br.shows_feed = data;
 	if (data.length == 0) {
 		$('ul#br-shows-list').append (
-			$('<li>No shows scheduled at the moment, check back soon!</li>')
+			'<li>No shows scheduled at the moment, check back soon!</li>'
 		);
+		if (_br.web || _br.ipad) {
+			$('ul#br-index-shows-list').append (
+				'<li>No shows scheduled at the moment, check back soon!</li>'
+			);
+		}
 	} else {
 		for (var i in data) {
 			var tickets = (data[i].ticket_link) ? ' <a href="' + data[i].ticket_link + '" target="_top">Tickets</a>' : '';
 			$('ul#br-shows-list').append (
-				$('<li><strong>' + data[i].date + ' - ' + data[i].time + '</strong> ' + data[i].city + ' <strong>' + data[i].venue + '</strong><br />' + data[i].info + tickets + '</li>')
+				'<li><strong>' + data[i].date + ' - ' + data[i].time + '</strong> ' + data[i].city + ' <strong>' + data[i].venue + '</strong><br />' + data[i].info + tickets + '</li>'
 			);
+			if ((_br.web || _br.ipad) && i < 2) {
+				$('ul#br-index-shows-list').append (
+					'<li><strong>' + data[i].date + ' - ' + data[i].time + '</strong> ' + data[i].city + '<br /><strong>' + data[i].venue + '</strong> ' + data[i].info + tickets + '</li>'
+				);
+			}
 		}
 	}
 }

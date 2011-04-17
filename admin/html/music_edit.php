@@ -57,7 +57,7 @@ if (isset ($updated) && $updated) {
 <textarea name="songs" id="songs" rows="4" cols="90" placeholder="/m/mp3/song_name.mp3"><?php echo $album->songs; ?></textarea><br />
 &nbsp;<input type="file" id="file_songs" class="mp3" /></p>
 
-<p>Popup messages (one-per-line):<br />
+<p>Popup messages for phones (one-per-line):<br />
 <textarea name="popups" rows="8" cols="90"><?php echo htmlentities ($album->popups); ?></textarea></p>
 
 <p class="example"><strong>Popup examples:</strong><br />

@@ -15,6 +15,8 @@ if ($_POST['artist_name']) {
 	$general = $br->general_settings ();
 }
 
+$about_page = $br->about_page ();
+
 require_once ('html/index.php');
 
 ?>

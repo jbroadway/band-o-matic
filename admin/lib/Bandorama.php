@@ -65,6 +65,11 @@ class Bandorama {
 			body text not null,
 			css text not null
 		)');
+		db_execute ('create table about_page (
+			title char(72) not null,
+			body text not null,
+			css text not null
+		)');
 		db_execute ('create table shows_rss (
 			feed char(128) not null,
 			last_checked TIMESTAMP not null
@@ -133,6 +138,11 @@ class Bandorama {
 			);
 		}
 
+		if (isset ($vals['body'])) {
+			$vals['title'] = $vals['artist_name'];
+			$this->about_page ($vals);
+		}
+
 		if (! $res) {
 			$this->error = db_error ();
 			return false;
@@ -158,6 +168,37 @@ class Bandorama {
 		} else {
 			$res = db_execute (
 				'insert into email_page values(%s, %s, %s)',
+				$vals['title'],
+				$vals['body'],
+				$vals['css']
+			);
+		}
+
+		if (! $res) {
+			$this->error = db_error ();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Get or set the about page contents.
+	 */
+	function about_page ($vals = false) {
+		if (! $vals) {
+			return db_single ('select * from about_page');
+		}
+
+		if (db_single ('select * from about_page')) {
+			$res = db_execute (
+				'update about_page set title = %s, body = %s, css = %s',
+				$vals['title'],
+				$vals['body'],
+				$vals['css']
+			);
+		} else {
+			$res = db_execute (
+				'insert into about_page values(%s, %s, %s)',
 				$vals['title'],
 				$vals['body'],
 				$vals['css']

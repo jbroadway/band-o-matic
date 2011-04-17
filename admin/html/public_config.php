@@ -8,6 +8,8 @@ _br.shows_url = 'admin/public_shows.php';
 
 _br.email_page = 'admin/public_email.php';
 
+_br.about_page = 'admin/public_about.php';
+
 _br.popup_delay = 10000;
 
 _br.initial_popup_delay = 3000;
