@@ -28,6 +28,11 @@
 
 <div id="br-pages">
 <a href="javascript:void(0);" class="br-page-link active" id="br-link-index" onclick="return _br.changePage ('index')" title="Home"></a>
+<div id="br-web-player">
+<a href="#" onclick="return _br.next ()" id="br-web-next-link" title="Next Track"></a>
+<a href="#" onclick="return _br.playPause ()" id="br-web-play-link" title="Play/Pause"></a>
+<a href="#" onclick="return _br.previous ()" id="br-web-prev-link" title="Previous Track"></a>
+</div>
 </div>
 
 <?php require_once ('admin/public_pages.php'); ?>

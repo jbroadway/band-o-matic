@@ -7,8 +7,8 @@
 	position: absolute;
 	background-color: rgba(0, 0, 0, .5);
 	width: 50%;
-	height: 77%;
-	margin-top: 10%;
+	height: 71%;
+	margin-top: 13%;
 	margin-left: 10%;
 	margin-right: 40%;
 	padding: 10px;
@@ -28,7 +28,7 @@
 	position: absolute;
 	background-color: rgba(0, 0, 0, .5);
 	width: 25%;
-	height: 35%;
+	height: 32%;
 	margin-top: 52%;
 	margin-right: 10%;
 	margin-left: 65%;
@@ -63,8 +63,8 @@
 	z-index: 500;
 	background-color: rgba(0, 0, 0, .5);
 	width: 25%;
-	height: 35%;
-	margin-top: 10%;
+	height: 32%;
+	margin-top: 13%;
 	margin-right: 10%;
 	margin-left: 65%;
 	padding: 10px;
@@ -91,6 +91,37 @@
 		padding-left: 0px;
 		margin-bottom: 10px;
 		width: auto;
+	}
+
+#br-play-link {
+	display: none !important;
+}
+
+#br-web-player {
+	display: inline;
+}
+
+	#br-web-player a {
+		display: block;
+		float: right;
+		width: 40px;
+		height: 40px;
+	}
+
+	#br-play-pause a:hover {
+		cursor: pointer;
+	}
+
+	#br-web-play-link {
+		background-image: url('pix/br-play.png');
+	}
+
+	#br-web-prev-link {
+		background-image: url('pix/br-prev.png');
+	}
+
+	#br-web-next-link {
+		background-image: url('pix/br-next.png');
 	}
 
 hr {

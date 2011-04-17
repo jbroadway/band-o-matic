@@ -178,6 +178,10 @@ div[data-role=page] {
 	display: none;
 }
 
+#br-web-player {
+	display: none;
+}
+
 #br-play-pause {
 	z-index: 5;
 	position: absolute;

@@ -315,6 +315,7 @@ var _br = (function ($) {
 	br.pause = function () {
 		br.player.jPlayer ('pause');
 		$('#br-play-link').css ('background-image', 'url("css/pix/br-play.png")');
+		$('#br-web-play-link').css ('background-image', 'url("css/pix/br-play.png")');
 		playing = false;
 		return false;
 	};
@@ -322,6 +323,7 @@ var _br = (function ($) {
 	br.resume = function () {
 		br.player.jPlayer ('play');
 		$('#br-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
+		$('#br-web-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
 		playing = true;
 		return false;
 	};
@@ -356,6 +358,7 @@ var _br = (function ($) {
 				br.volume = .8;
 				br.player.jPlayer ('volume', br.volume).jPlayer ('setMedia', {mp3: list[track]}).jPlayer ('play');
 				$('#br-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
+				$('#br-web-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
 				playing = true;
 			}
 		}
@@ -368,6 +371,7 @@ var _br = (function ($) {
 			br.volume = .8;
 			br.player.jPlayer ('setMedia', {mp3: next_track}).jPlayer ('volume', br.volume).jPlayer ('play');
 			$('#br-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
+			$('#br-web-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
 			playing = true;
 			return;
 		}
@@ -391,6 +395,29 @@ var _br = (function ($) {
 		track++;
 		if (track == list.length) {
 			track = 0;
+			if (! br.loop_tracks) {
+				return;
+			}
+		}
+
+		br.player.jPlayer ('setMedia', {mp3: list[track]}).jPlayer ('play');
+	};
+
+	br.previous = function () {
+		if (cur_page == 'index') {
+			var list = [];
+			for (var i in br.tracks) {
+				for (var s in br.tracks[i]) {
+					list.push (br.tracks[i][s]);
+				}
+			}
+		} else {
+			var list = br.tracks[cur_page];
+		}
+
+		track--;
+		if (track == list.length) {
+			track = list.length - 1;
 			if (! br.loop_tracks) {
 				return;
 			}
@@ -499,7 +526,7 @@ function _br_shows_callback (data) {
 			);
 			if ((_br.web || _br.ipad) && i < 2) {
 				$('ul#br-index-shows-list').append (
-					'<li><strong>' + data[i].date + ' - ' + data[i].time + '</strong> ' + data[i].city + '<br /><strong>' + data[i].venue + '</strong> ' + data[i].info + tickets + '</li>'
+					'<li><strong>' + data[i].date + ' - ' + data[i].time + '</strong> ' + data[i].city + ' <strong>' + data[i].venue + '</strong> ' + data[i].info + tickets + '</li>'
 				);
 			}
 		}
