@@ -5,7 +5,7 @@
 #br-index-about {
 	z-index: 500;
 	position: absolute;
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, .6);
 	width: 50%;
 	height: 71%;
 	margin-top: 13%;
@@ -23,10 +23,73 @@
 		padding-top: 0px;
 	}
 
+#br-shows {
+	z-index: 500;
+	position: absolute;
+	background-color: rgba(0, 0, 0, .6);
+	width: 50%;
+	height: 71%;
+	margin-top: 13%;
+	margin-left: 225%;
+	margin-right: 25%;
+	padding: 10px;
+	text-shadow: none;
+	color: #eee;
+	text-shadow: 0 1px 1px #000;
+	overflow: hidden;
+}
+
+	#br-shows h2 {
+		margin-top: 0px;
+		padding-top: 0px;
+	}
+
+#br-twitter {
+	z-index: 500;
+	position: absolute;
+	background-color: rgba(0, 0, 0, .6);
+	width: 50%;
+	height: 71%;
+	margin-top: 13%;
+	margin-left: 125%;
+	margin-right: 25%;
+	padding: 10px;
+	text-shadow: none;
+	color: #eee;
+	text-shadow: 0 1px 1px #000;
+	overflow: hidden;
+}
+
+	#br-twitter h2 {
+		margin-top: 0px;
+		padding-top: 0px;
+	}
+
+#br-email {
+	z-index: 500;
+	position: absolute;
+	background-color: rgba(0, 0, 0, .6);
+	width: 50%;
+	height: 71%;
+	margin-top: 13%;
+	margin-left: 325%;
+	margin-right: 25%;
+	padding: 10px;
+	text-shadow: none;
+	color: #eee;
+	text-shadow: 0 1px 1px #000;
+	overflow: hidden;
+}
+
+	#br-email h2 {
+		margin-top: 0px;
+		padding-top: 0px;
+	}
+
 #br-index-shows {
 	z-index: 500;
 	position: absolute;
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, .6);
 	width: 25%;
 	height: 32%;
 	margin-top: 52%;
@@ -61,7 +124,7 @@
 #br-index-news {
 	position: absolute;
 	z-index: 500;
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, .6);
 	width: 25%;
 	height: 32%;
 	margin-top: 13%;
