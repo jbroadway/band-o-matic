@@ -184,6 +184,12 @@ var _br = (function ($) {
 			}
 		}
 
+		if (br.email_page) {
+			$('#br-play-pause').append (
+				$('<a rel="br-email" class="br-top-link" id="br-link-email" title="Contact Page"></a>')
+			);
+		}
+
 		if (br.shows_url) {
 			$('#br-play-pause').append (
 				$('<a rel="br-shows" class="br-top-link" id="br-link-shows" title="Shows"></a>')
@@ -221,12 +227,6 @@ var _br = (function ($) {
 					'<div id="br-index-news"><h2>' + br.news_title + '</h2><ul id="br-index-feed"></ul><a href="#" onclick="$(\'#br-link-news\').trigger (\'click\'); return false">More news</a>'
 				);
 			}
-		}
-
-		if (br.email_page) {
-			$('#br-play-pause').append (
-				$('<a rel="br-email" class="br-top-link" id="br-link-email" title="Contact Page"></a>')
-			);
 		}
 
 		$(document).keydown (function (evt) {
