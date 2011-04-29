@@ -36,7 +36,7 @@ function db_compile_query ($sql, $args) {
 				if (empty ($arg)) {
 					$args[$k] = "''";
 				} else {
-					$args[$k] = "'" . str_replace ("'", "''", stripslashes ($arg)) . "'";
+					$args[$k] = "'" . @sqlite_escape_string ($arg) . "'";
 				}
 			}
 		}
