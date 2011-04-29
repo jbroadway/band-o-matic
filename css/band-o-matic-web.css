@@ -191,3 +191,17 @@ hr {
 	border: 0px none;
 	border-bottom: 1px solid #eee;
 }
+
+#br-index-about ul, #br-index-news ul, #br-index-shows ul, #br-twitter ul, #br-shows ul, #br-email ul {
+	list-style-type: none;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+#br-index-about li, #br-index-news li, #br-index-shows li, #br-twitter li, #br-shows li, #br-email li {
+	list-style-type: none;
+	margin-left: 0px;
+	padding-left: 0px;
+	margin-bottom: 10px;
+	width: auto;
+}
