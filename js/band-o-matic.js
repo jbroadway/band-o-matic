@@ -82,14 +82,15 @@ var _br = (function ($) {
 	br.messages = {};
 
 	br.preload = function () {
-		for (var i = 0; i < arguments.length; i++) {
+		var i;
+		for (i = 0; i < arguments.length; i++) {
 			images[i] = document.createElement ('img');
 			images[i].src = arguments[i];
 		}
 	};
 
 	br.changePage = function (pg) {
-		if (pg == 'index' && ! br.mobile) {
+		if (pg === 'index' && ! br.mobile) {
 			$('#br-index-about').animate ({marginLeft: '10%'}, 500);
 			$('#br-index-news').animate ({marginLeft: '65%'}, 500);
 			$('#br-index-shows').animate ({marginLeft: '65%'}, 500);
@@ -98,7 +99,7 @@ var _br = (function ($) {
 			$('#br-email').show ().animate ({marginLeft: '325%'}, 500);
 		}
 
-		if (pg == cur_page) {
+		if (pg === cur_page) {
 			return false;
 		}
 
@@ -109,8 +110,8 @@ var _br = (function ($) {
 		if (timeout) {
 			clearTimeout (timeout);
 		}
-		timeout = setTimeout ('_br.popupMessage ();', br.popup_delay);
-		if (pg != 'index') {
+		timeout = setTimeout (function () { _br.popupMessage (); }, br.popup_delay);
+		if (pg !== 'index') {
 			br.play (pg);
 		}
 		$.mobile.changePage ('#' + pg, 'slide');
@@ -118,11 +119,11 @@ var _br = (function ($) {
 	};
 
 	br.setOrientation = function () {
-		var prefix = (br.iphone) ? 'iphone-' : false,
-			prefix = (! prefix && br.ipad) ? 'ipad-' : prefix,
+		var prefix = (br.iphone) ? 'iphone-' : false;
+			prefix = (! prefix && br.ipad) ? 'ipad-' : prefix;
 			prefix = (! prefix) ? 'web-' : prefix;
 
-		if (Math.abs(window.orientation) == 90) {
+		if (Math.abs(window.orientation) === 90) {
 			$('html').removeClass (prefix + 'portrait').addClass (prefix + 'landscape');
 		} else {
 			$('html').removeClass (prefix + 'landscape').addClass (prefix + 'portrait');
@@ -132,6 +133,7 @@ var _br = (function ($) {
 	};
 
 	br.init = function () {
+		var extra = '', i = 0, url;
 		$(document).bind ('orientationchange', br.setOrientation);
 		br.setOrientation ();
 
@@ -152,13 +154,11 @@ var _br = (function ($) {
 		if (window.location.href.match ('app=true')) {
 			br.in_app = true;
 			br.hide_iframe = false;
-			var extra = '&app=true';
-		} else {
-			var extra = '';
+			extra = '&app=true';
 		}
 
 		if (! br.hide_iframe) {
-			var url = window.location.href.replace (/#.*$/, '');
+			url = window.location.href.replace (/#.*$/, '');
 			url = url.replace (/\?.*$/, '');
 			url = url.replace (/\/$/, '');
 			$('#br-play-pause').before (
@@ -217,7 +217,7 @@ var _br = (function ($) {
 			$('#br-twitter').append (
 				$('<h2>' + br.news_title + '</h2><ul id="br-twitter-feed"></ul>')
 			);
-			if (br.twitter_user.match (/^[a-zA-Z0-9_-]+$/)) {
+			if (br.twitter_user.match (/^[a-zA-Z0-9_\-]+$/)) {
 				$('#br-twitter').append (
 					$('<p><a href="http://twitter.com/' + br.twitter_user + '" target="_top">All updates</a></p>')
 				);
@@ -230,7 +230,7 @@ var _br = (function ($) {
 		}
 
 		$(document).keydown (function (evt) {
-			if (evt.keyCode == 32) {
+			if (evt.keyCode === 32) {
 				br.playPause ();
 			}
 		});
@@ -320,28 +320,29 @@ var _br = (function ($) {
 			});
 		}
 
-		for (var i in br.pages) {
-			if (i == 'index') {
-				continue;
+		for (i in br.pages) {
+			if (br.pages.hasOwnProperty(i)) {
+				if (i !== 'index') {
+					if (! br.pages[i].transition) {
+						br.pages[i].transition = 'slide';
+					}
+					$('#br-pages').append (
+						$('<a href="javascript:void(0);" class="br-page-link" id="br-link-' + i + '" onclick="return _br.changePage (\'' + i + '\')" title="Play Album: ' + i.replace ('-', ' ') + '"></a>')
+					);
+				}
 			}
-			if (! br.pages[i].transition) {
-				br.pages[i].transition = 'slide';
-			}
-			$('#br-pages').append (
-				$('<a href="javascript:void(0);" class="br-page-link" id="br-link-' + i + '" onclick="return _br.changePage (\'' + i + '\')" title="Play Album: ' + i.replace ('-', ' ') + '"></a>')
-			);
 		}
 
-		timeout = setTimeout ('_br.popupMessage ();', br.initial_popup_delay);
+		timeout = setTimeout (function () { _br.popupMessage (); }, br.initial_popup_delay);
 
-		if (br.twitter_user.match (/^[a-zA-Z0-9_-]+$/)) {
+		if (br.twitter_user.match (/^[a-zA-Z0-9_\-]+$/)) {
 			$.getScript ('http://twitter.com/statuses/user_timeline/' + br.twitter_user + '.json?callback=_br_twitter_callback&count=' + br.twitter_count);
 		} else if (br.twitter_user) {
 			$.jGFeed (br.twitter_user, _br_newsrss_callback, br.twitter_count);
 		}
 
 		if (br.shows_url) {
-			var url = (br.shows_url.match (/\?/)) ? br.shows_url + '&callback=_br_shows_callback' : br.shows_url + '?callback=_br_shows_callback';
+			url = (br.shows_url.match (/\?/)) ? br.shows_url + '&callback=_br_shows_callback' : br.shows_url + '?callback=_br_shows_callback';
 			$.getScript (url);
 		}
 	};
@@ -373,6 +374,7 @@ var _br = (function ($) {
 	};
 
 	br.play = function (album) {
+		var list = [], i, s;
 		if (! br.player) {
 			// create player
 			br.player = $('#br-player').jPlayer ({
@@ -383,23 +385,27 @@ var _br = (function ($) {
 			});
 		}
 
-		if (cur_page == 'index') {
-			var list = [];
-			for (var i in br.tracks) {
-				for (var s in br.tracks[i]) {
-					list.push (br.tracks[i][s]);
+		if (cur_page === 'index') {
+			list = [];
+			for (i in br.tracks) {
+				if (br.tracks.hasOwnProperty(i)) {
+					for (s in br.tracks[i]) {
+						if (br.tracks[i].hasOwnProperty(s)) {
+							list.push (br.tracks[i][s]);
+						}
+					}
 				}
 			}
 		} else {
-			var list = br.tracks[cur_page];
+			list = br.tracks[cur_page];
 		}
 	
-		if (cur_page != 'index' || ! playing) {
+		if (cur_page !== 'index' || ! playing) {
 			track = 0;
 			if (playing) {
 				br.fadeToNext (list[track]);
 			} else {
-				br.volume = .8;
+				br.volume = 0.8;
 				br.player.jPlayer ('volume', br.volume).jPlayer ('setMedia', {mp3: list[track]}).jPlayer ('play');
 				$('#br-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
 				$('#br-web-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
@@ -411,33 +417,38 @@ var _br = (function ($) {
 	};
 
 	br.fadeToNext = function (next_track) {
-		if (br.volume <= .1) {
-			br.volume = .8;
+		if (br.volume <= 0.1) {
+			br.volume = 0.8;
 			br.player.jPlayer ('setMedia', {mp3: next_track}).jPlayer ('volume', br.volume).jPlayer ('play');
 			$('#br-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
 			$('#br-web-play-link').css ('background-image', 'url("css/pix/br-pause.png")');
 			playing = true;
 			return;
 		}
-		br.volume -= .1;
+		br.volume -= 0.1;
 		br.player.jPlayer ('volume', br.volume);
 		setTimeout ('_br.fadeToNext (\'' + next_track + '\');', 100);
-	}
+	};
 
 	br.next = function () {
-		if (cur_page == 'index') {
-			var list = [];
-			for (var i in br.tracks) {
-				for (var s in br.tracks[i]) {
-					list.push (br.tracks[i][s]);
+		var list = [], i, s;
+		if (cur_page === 'index') {
+			list = [];
+			for (i in br.tracks) {
+				if (br.tracks.hasOwnProperty(i)) {
+					for (s in br.tracks[i]) {
+						if (br.tracks[i].hasOwnProperty(s)) {
+							list.push (br.tracks[i][s]);
+						}
+					}
 				}
 			}
 		} else {
-			var list = br.tracks[cur_page];
+			list = br.tracks[cur_page];
 		}
 
 		track++;
-		if (track == list.length) {
+		if (track === list.length) {
 			track = 0;
 			if (! br.loop_tracks) {
 				return;
@@ -448,19 +459,24 @@ var _br = (function ($) {
 	};
 
 	br.previous = function () {
-		if (cur_page == 'index') {
-			var list = [];
-			for (var i in br.tracks) {
-				for (var s in br.tracks[i]) {
-					list.push (br.tracks[i][s]);
+		var list = [], i, s;
+		if (cur_page === 'index') {
+			list = [];
+			for (i in br.tracks) {
+				if (br.tracks.hasOwnProperty(i)) {
+					for (s in br.tracks[i]) {
+						if (br.tracks[i].hasOwnProperty(s)) {
+							list.push (br.tracks[i][s]);
+						}
+					}
 				}
 			}
 		} else {
-			var list = br.tracks[cur_page];
+			list = br.tracks[cur_page];
 		}
 
 		track--;
-		if (track == list.length) {
+		if (track === list.length) {
 			track = list.length - 1;
 			if (! br.loop_tracks) {
 				return;
@@ -472,12 +488,15 @@ var _br = (function ($) {
 
 	br.linkify = function (text) {
 		var re_image = /^https?:\/\/.+\.(jpg|png|gif)$/i,
-			re_links = / ((https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i,
-			re_hashtags = /#[a-z0-9]+/ig;
+			re_links = / ((https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|])/i,
+			re_hashtags = /#[a-z0-9]+/ig,
+			re_atlinks = /\@([a-z0-9_-]+)/ig;
 
 		return (text.match (re_image))
 				? '<img src="' + text + '" class="br-img" />'
-				: text.replace (re_links, ' <a href="$1" class="br-external-link"><' + '/a>').replace (re_hashtags, '')
+				: text.replace (re_links, ' <a href="$1" class="br-external-link" title="$1"><' + '/a>')
+					.replace (re_hashtags, '')
+					.replace (re_atlinks, '@<a href="http://twitter.com/$1">$1<' + '/a>');
 	};
 
 	br.popupMessage = function () {
@@ -508,35 +527,39 @@ var _br = (function ($) {
 		}
 
 		message_num++;
-		timeout = setTimeout ('_br.popupMessage ();', br.popup_delay);
+		timeout = setTimeout (function () { _br.popupMessage (); }, br.popup_delay);
 	};
 
 	return br;
 }(jQuery));
 
 function _br_twitter_callback (data) {
+	var i;
 	_br.twitter_feed = data;
-	for (var i in data) {
-		_br.messages['index'].push ('Twitter: ' + data[i].text);
-		$('ul#br-twitter-feed').append (
-			'<li>' + _br.linkify (data[i].text) + '</li>'
-		);
-		if ((_br.web || _br.ipad) && i < 2) {
-			$('ul#br-index-feed').append (
+	for (i in data) {
+		if (data.hasOwnProperty(i)) {
+			_br.messages.index.push ('Twitter: ' + data[i].text);
+			$('ul#br-twitter-feed').append (
 				'<li>' + _br.linkify (data[i].text) + '</li>'
 			);
+			if ((_br.web || _br.ipad) && i < 2) {
+				$('ul#br-index-feed').append (
+					'<li>' + _br.linkify (data[i].text) + '</li>'
+				);
+			}
 		}
 	}
 }
 
 function _br_newsrss_callback (feed) {
+	var i;
 	if (! feed) {
 		return false;
 	}
 
 	_br.twitter_feed = feed;
-	for (var i = 0; i < feed.entries.length; i++) {
-		_br.messages['index'].push ('News: ' + feed.entries[i].title + ' ' + feed.entries[i].link);
+	for (i = 0; i < feed.entries.length; i++) {
+		_br.messages.index.push ('News: ' + feed.entries[i].title + ' ' + feed.entries[i].link);
 		$('ul#br-twitter-feed').append (
 			'<li>' + _br.linkify (feed.entries[i].title + ' ' + feed.entries[i].link) + '</li>'
 		);
@@ -552,8 +575,9 @@ function _br_newsrss_callback (feed) {
 }
 
 function _br_shows_callback (data) {
+	var i, tickets;
 	_br.shows_feed = data;
-	if (data.length == 0) {
+	if (data.length === 0) {
 		$('ul#br-shows-list').append (
 			'<li>No shows scheduled at the moment, check back soon!</li>'
 		);
@@ -563,15 +587,17 @@ function _br_shows_callback (data) {
 			);
 		}
 	} else {
-		for (var i in data) {
-			var tickets = (data[i].ticket_link) ? ' <a href="' + data[i].ticket_link + '" target="_top">Tickets</a>' : '';
-			$('ul#br-shows-list').append (
-				'<li><strong>' + data[i].date + ' - ' + data[i].time + '</strong> ' + data[i].city + ' <strong>' + data[i].venue + '</strong><br />' + data[i].info + tickets + '</li>'
-			);
-			if ((_br.web || _br.ipad) && i < 2) {
-				$('ul#br-index-shows-list').append (
-					'<li><strong>' + data[i].date + ' - ' + data[i].time + '</strong> ' + data[i].city + ' <strong>' + data[i].venue + '</strong> ' + data[i].info + tickets + '</li>'
+		for (i in data) {
+			if (data.hasOwnProperty(i)) {
+				tickets = (data[i].ticket_link) ? ' <a href="' + data[i].ticket_link + '" target="_top">Tickets</a>' : '';
+				$('ul#br-shows-list').append (
+					'<li><strong>' + data[i].date + ' - ' + data[i].time + '</strong> ' + data[i].city + ' <strong>' + data[i].venue + '</strong><br />' + data[i].info + tickets + '</li>'
 				);
+				if ((_br.web || _br.ipad) && i < 2) {
+					$('ul#br-index-shows-list').append (
+						'<li><strong>' + data[i].date + ' - ' + data[i].time + '</strong> ' + data[i].city + ' <strong>' + data[i].venue + '</strong> ' + data[i].info + tickets + '</li>'
+					);
+				}
 			}
 		}
 	}
